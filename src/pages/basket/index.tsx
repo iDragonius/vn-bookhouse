@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Constants } from "@/lib/constants";
 import BasketView from "@/components/ui/views/basket-view";
 import { useBasket } from "@/hooks/use-basket";
+import { imageLoader } from "@/lib/utils";
 
 export interface BasketPageProps {}
 
@@ -31,10 +32,8 @@ const BasketPage: FC<BasketPageProps> = () => {
               >
                 <div className={" flex gap-5 w-[400px]"}>
                   <Image
-                    src={
-                      Constants.IMAGE_URL +
-                      basketItem.data.attributes.image.data.attributes.url
-                    }
+                    loader={imageLoader}
+                    src={basketItem.data.attributes.image.data.attributes.url}
                     alt={basketItem.data.attributes.name}
                     width={120}
                     height={120}

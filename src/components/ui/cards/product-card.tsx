@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { ProductProps } from "@/types";
-import { cn } from "@/lib/utils";
+import { cn, imageLoader } from "@/lib/utils";
 import Image from "next/image";
 import { Constants } from "@/lib/constants";
 import { useBasket } from "@/hooks/use-basket";
@@ -8,17 +8,7 @@ import { useBasket } from "@/hooks/use-basket";
 export interface ProductCardProps {
   data: ProductProps;
 }
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src: string;
-  width: number;
-  quality?: number;
-}) => {
-  return `https://admin.vnbookhouse.az${src}?w=${width}&q=${quality || 75}`;
-};
+
 const ProductCard: FC<ProductCardProps> = ({ data }) => {
   const { addToBasket } = useBasket();
   return (

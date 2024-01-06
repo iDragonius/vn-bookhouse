@@ -9,6 +9,7 @@ import { Constants } from "@/lib/constants";
 import ProductCard from "@/components/ui/cards/product-card";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
+import { imageLoader } from "@/lib/utils";
 
 export interface CategoryItemPageProps {}
 
@@ -39,8 +40,8 @@ const CategoryItemPage: FC<CategoryItemPageProps> = () => {
         >
           {data?.category.data.attributes.background.data && (
             <Image
+              loader={imageLoader}
               src={
-                Constants.IMAGE_URL +
                 data?.category.data.attributes.background.data.attributes.url
               }
               alt={data?.category.data.attributes.name}
