@@ -6,9 +6,19 @@ import GET_HOME, { GetHomeResponse } from "@/lib/queries/home.query";
 import ProductCarousel from "@/components/ui/carousels/product-carousel";
 import ProductCard from "@/components/ui/cards/product-card";
 import { Constants } from "@/lib/constants";
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 
-function Home({ data }: { data: GetHomeResponse }) {
-  console.log(data);
+function Home() {
+  const { locale } = useRouter();
+  const { data, loading } = useQuery<GetHomeResponse>(GET_HOME, {
+    variables: {
+      locale: Config.multiLanguage ? locale : Constants.defaultLocale,
+    },
+  });
+  if (loading) {
+    return <></>;
+  }
   return (
     <main>
       <div className={"box mb-8"}>
@@ -17,7 +27,7 @@ function Home({ data }: { data: GetHomeResponse }) {
             Xüsusi təkliflər
           </h2>
           <ProductCarousel
-            data={data.collection.data.attributes.specialOffers.data}
+            data={data?.collection.data.attributes.specialOffers.data || []}
           />
         </div>
         <div>
@@ -25,7 +35,7 @@ function Home({ data }: { data: GetHomeResponse }) {
             Yeniliklər
           </h2>
           <ProductCarousel
-            data={data.collection.data.attributes.newProducts.data}
+            data={data?.collection.data.attributes.newProducts.data || []}
           />
         </div>
         <div className={"mt-8"}>
@@ -37,7 +47,7 @@ function Home({ data }: { data: GetHomeResponse }) {
               "grid grid-cols-1 sm:grid-cols-2 min-[800px]:grid-cols-3 tb:grid-cols-4 gap-5"
             }
           >
-            {data.products.data.map((product) => (
+            {data?.products.data.map((product) => (
               <ProductCard data={product} key={product.id} />
             ))}
           </div>
@@ -46,19 +56,5 @@ function Home({ data }: { data: GetHomeResponse }) {
     </main>
   );
 }
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { locale } = context;
-  const apolloClient = initializeApollo();
 
-  const { data } = await apolloClient.query({
-    query: GET_HOME,
-    variables: {
-      locale: Config.multiLanguage ? locale : Constants.defaultLocale,
-    },
-  });
-
-  return {
-    props: { data },
-  };
-};
 export default Home;
