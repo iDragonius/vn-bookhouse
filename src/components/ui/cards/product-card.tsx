@@ -14,7 +14,10 @@ const ProductCard: FC<ProductCardProps> = ({ data }) => {
   return (
     <div className={cn(" rounded-[8px] relative h-[430px] group trans ")}>
       <Image
-        src={Constants.IMAGE_URL + data.attributes.image.data.attributes.url}
+        src={
+          "https://admin.vnbookhouse.az" +
+          data.attributes.image.data.attributes.url
+        }
         alt={data.attributes.name}
         width={300}
         height={295}

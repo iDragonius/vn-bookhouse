@@ -9,7 +9,8 @@ export function useBasket() {
   const { basketData, setBasketData, itemsCount, priceInfo } =
     useContext(BasketContext);
   function addToBasket(data: ProductProps, count: number) {
-    const clonedData = JSON.parse(JSON.stringify(basketData)) as BasketProps;
+    const clonedData =
+      (JSON.parse(JSON.stringify(basketData)) as BasketProps) || [];
     const possibleExistedProduct = clonedData?.find(
       (basketItem) => basketItem.data.id === data.id,
     );

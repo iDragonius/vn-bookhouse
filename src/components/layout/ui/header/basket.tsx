@@ -26,13 +26,15 @@ const Basket: FC<BasketProps> = () => {
       >
         Səbət
       </p>
-      <div
-        className={
-          "absolute text-12 -top-2 -right-1 bg-red-500 rounded-full p-0.5 font-medium text-white"
-        }
-      >
-        {itemsCount}
-      </div>
+      {itemsCount > 0 && (
+        <div
+          className={
+            "absolute text-12 -top-2 min-w-[18px] flex items-center justify-center min-h-[18px] -right-1 bg-red-500 rounded-full p-0.5 font-medium text-white"
+          }
+        >
+          {itemsCount}
+        </div>
+      )}
     </Link>
   );
 };
