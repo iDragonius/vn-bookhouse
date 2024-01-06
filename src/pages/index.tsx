@@ -9,16 +9,16 @@ import { Constants } from "@/lib/constants";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-function Home() {
-  const { locale } = useRouter();
-  const { data, loading } = useQuery<GetHomeResponse>(GET_HOME, {
-    variables: {
-      locale: Config.multiLanguage ? locale : Constants.defaultLocale,
-    },
-  });
-  if (loading) {
-    return <></>;
-  }
+function Home({ data }: { data: GetHomeResponse }) {
+  // const { locale } = useRouter();
+  // const { data, loading } = useQuery<GetHomeResponse>(GET_HOME, {
+  //   variables: {
+  //     locale: Config.multiLanguage ? locale : Constants.defaultLocale,
+  //   },
+  // });
+  // if (loading) {
+  //   return <></>;
+  // }
   return (
     <main>
       <div className={"box mb-8"}>
@@ -57,4 +57,20 @@ function Home() {
   );
 }
 
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+
+  const { data } = await apolloClient.query({
+    query: GET_HOME,
+    variables: {
+      locale: Constants.defaultLocale,
+    },
+  });
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
 export default Home;
