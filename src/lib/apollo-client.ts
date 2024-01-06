@@ -26,7 +26,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: "http://127.0.0.1:1337/graphql",
+  uri: "https://admin.vnbookhouse.az/graphql",
   credentials: "same-origin",
 });
 

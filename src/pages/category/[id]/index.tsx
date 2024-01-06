@@ -66,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await apolloClient.query({
     query: GET_CATEGORY_WITH_PRODUCTS,
     variables: {
-      locale: Config.multiLanguage ? locale : "en",
+      locale: Config.multiLanguage ? locale : Constants.defaultLocale,
       id: query.id,
     },
   });

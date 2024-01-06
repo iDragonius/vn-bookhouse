@@ -11,6 +11,7 @@ import GET_CATEGORIES, {
 import Config from "@/lib/config";
 import { useRouter } from "next/router";
 import { CategoryProps } from "@/types";
+import { Constants } from "@/lib/constants";
 
 export interface HeaderProps {}
 
@@ -21,7 +22,7 @@ const Header: FC<HeaderProps> = () => {
     GET_CATEGORIES,
     {
       variables: {
-        locale: Config.multiLanguage ? locale : "en",
+        locale: Config.multiLanguage ? locale : Constants.defaultLocale,
       },
     },
   );

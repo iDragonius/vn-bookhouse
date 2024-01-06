@@ -5,6 +5,7 @@ import Config from "@/lib/config";
 import GET_HOME, { GetHomeResponse } from "@/lib/queries/home.query";
 import ProductCarousel from "@/components/ui/carousels/product-carousel";
 import ProductCard from "@/components/ui/cards/product-card";
+import { Constants } from "@/lib/constants";
 
 function Home({ data }: { data: GetHomeResponse }) {
   console.log(data);
@@ -52,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await apolloClient.query({
     query: GET_HOME,
     variables: {
-      locale: Config.multiLanguage ? locale : "en",
+      locale: Config.multiLanguage ? locale : Constants.defaultLocale,
     },
   });
 

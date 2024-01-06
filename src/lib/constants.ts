@@ -1,3 +1,4 @@
 export const Constants = {
-  IMAGE_URL: "http://127.0.0.1:1337",
+  IMAGE_URL: "https://admin.vnbookhouse.az",
+  defaultLocale: "az",
 };
