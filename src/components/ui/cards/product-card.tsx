@@ -8,16 +8,24 @@ import { useBasket } from "@/hooks/use-basket";
 export interface ProductCardProps {
   data: ProductProps;
 }
-
+const imageLoader = ({
+  src,
+  width,
+  quality,
+}: {
+  src: string;
+  width: number;
+  quality?: number;
+}) => {
+  return `https://admin.vnbookhouse.az${src}?w=${width}&q=${quality || 75}`;
+};
 const ProductCard: FC<ProductCardProps> = ({ data }) => {
   const { addToBasket } = useBasket();
   return (
     <div className={cn(" rounded-[8px] relative h-[430px] group trans ")}>
       <Image
-        src={
-          "https://admin.vnbookhouse.az" +
-          data.attributes.image.data.attributes.url
-        }
+        loader={imageLoader}
+        src={data.attributes.image.data.attributes.url}
         alt={data.attributes.name}
         width={300}
         height={295}
