@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Constants } from "@/lib/constants";
 import BasketView from "@/components/ui/views/basket-view";
 import { useBasket } from "@/hooks/use-basket";
 import { imageLoader } from "@/lib/utils";

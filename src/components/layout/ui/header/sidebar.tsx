@@ -1,5 +1,5 @@
 import { CrossIcon } from "@/components/icons";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import Link from "next/link";
 import CategoryIcons from "@/lib/category-icons";
@@ -7,6 +7,8 @@ import { CategoryProps } from "@/types";
 
 const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
   const sidebarRef = useRef<null | HTMLDivElement>(null);
+  const [activeMainCategory, setActiveMainCategory] =
+    useState<null | CategoryProps>(null);
   useOnClickOutside(sidebarRef, close);
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
@@ -24,23 +26,48 @@ const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
       document.removeEventListener("keydown", keyDownHandler);
     };
   }, []);
+
+  function onHoverMainCategory(category: CategoryProps) {
+    if (category.id === activeMainCategory?.id) return;
+    setActiveMainCategory(category);
+  }
   return (
     <div
       className={
-        "fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex gap-5 z-[700]"
+        "fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex  z-[700]"
       }
       style={{
         backdropFilter: "blur(3px)",
       }}
     >
-      <div
-        className={"  w-[320px] h-full bg-white py-5 flex flex-col"}
-        ref={sidebarRef}
-      >
-        {data.map((category) => (
-          <SidebarItem data={category} key={category.id} />
-        ))}
+      <div ref={sidebarRef} className={"flex  "}>
+        <div
+          className={"  w-[280px] h-full bg-white py-5 flex flex-col border-r"}
+        >
+          {data.map((category) => (
+            <SidebarItem
+              data={category}
+              key={category.id}
+              onMouseOver={() => onHoverMainCategory(category)}
+              hasLink={false}
+            />
+          ))}
+        </div>
+        {activeMainCategory && (
+          <div
+            className={"  w-[240px] h-full bg-white py-5 flex flex-col mr-5"}
+          >
+            {activeMainCategory.attributes.categories.data.map((category) => (
+              <SidebarItem
+                data={category as CategoryProps}
+                key={category.id}
+                hasLink={true}
+              />
+            ))}
+          </div>
+        )}
       </div>
+
       <button
         className={
           "self-start mt-5 p-2 trans rounded-full hover:bg-white hover:bg-opacity-20 outline-none focus:bg-white focus:bg-opacity-20 "
@@ -53,8 +80,16 @@ const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
   );
 };
 
-const SidebarItem = ({ data }: { data: CategoryProps }) => {
-  return (
+const SidebarItem = ({
+  data,
+  onMouseOver,
+  hasLink,
+}: {
+  data: CategoryProps;
+  onMouseOver?(): void;
+  hasLink: boolean;
+}) => {
+  return hasLink ? (
     <Link
       href={`/category/${data.id}`}
       className={
@@ -70,6 +105,22 @@ const SidebarItem = ({ data }: { data: CategoryProps }) => {
         {data.attributes.name}
       </p>
     </Link>
+  ) : (
+    <div
+      onMouseOver={onMouseOver}
+      className={
+        "flex items-center gap-2 px-4 py-3 w-full trans hover:bg-primaryGold focus:bg-primaryGold outline-none group"
+      }
+    >
+      {CategoryIcons[data.attributes.icon]}
+      <p
+        className={
+          "text-[#2B2B2B] group-hover:text-white group-focus:text-white trans"
+        }
+      >
+        {data.attributes.name}
+      </p>
+    </div>
   );
 };
 

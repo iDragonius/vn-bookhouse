@@ -8,12 +8,25 @@ export interface GetCategoriesResponse {
 }
 const GET_CATEGORIES = gql`
   query ($locale: I18NLocaleCode!) {
-    categories(locale: $locale, sort: "position:asc") {
+    categories(
+      locale: $locale
+      sort: "position:asc"
+      filters: { isMainCategory: { eq: true } }
+    ) {
       data {
         attributes {
           name
           icon
           position
+          categories(sort: "position:asc") {
+            data {
+              id
+              attributes {
+                name
+                position
+              }
+            }
+          }
         }
         id
       }

@@ -15,6 +15,16 @@ export type CategoryProps = {
     name: string;
     icon: string;
     position: number;
+    categories: {
+      data: {
+        id: string;
+        attributes: {
+          name: string;
+          icon: string;
+          position: number;
+        };
+      }[];
+    };
   };
 };
 export type ProductProps = {
