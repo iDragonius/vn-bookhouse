@@ -37,7 +37,7 @@ const GET_HOME = gql`
                     }
                   }
                 }
-                image {
+                images {
                   data {
                     id
                     attributes {
@@ -67,7 +67,7 @@ const GET_HOME = gql`
                     }
                   }
                 }
-                image {
+                images {
                   data {
                     id
                     attributes {
@@ -97,11 +97,10 @@ const GET_HOME = gql`
               attributes {
                 name
                 position
-                icon
               }
             }
           }
-          image {
+          images {
             data {
               id
               attributes {

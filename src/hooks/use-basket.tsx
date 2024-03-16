@@ -4,6 +4,7 @@ import {
   type BasketProps,
 } from "@/components/providers/basket-provider";
 import { ProductProps } from "@/types";
+import toast from "react-hot-toast";
 
 export function useBasket() {
   const { basketData, setBasketData, itemsCount, priceInfo } =
@@ -26,6 +27,11 @@ export function useBasket() {
         count,
         data,
       });
+    }
+    if (count > 0) {
+      toast.success("Məhsul uğurla əlavə olundu!");
+    } else {
+      toast.success("Məhsul uğurla silindi!");
     }
     setBasketData(clonedData);
     localStorage.setItem("basket", JSON.stringify(clonedData));

@@ -7,7 +7,6 @@ export interface GetCategoryWithProductsResponse {
       id: string;
       attributes: {
         name: string;
-        icon: string;
         background: ImageProps;
         products: {
           data: ProductProps[];
@@ -22,7 +21,7 @@ const GET_CATEGORY_WITH_PRODUCTS = gql`
       data {
         attributes {
           name
-          icon
+
           background {
             data {
               id
@@ -40,7 +39,7 @@ const GET_CATEGORY_WITH_PRODUCTS = gql`
               attributes {
                 name
                 description
-                image {
+                images {
                   data {
                     id
                     attributes {
@@ -58,7 +57,6 @@ const GET_CATEGORY_WITH_PRODUCTS = gql`
                     id
                     attributes {
                       name
-                      icon
                       position
                     }
                   }

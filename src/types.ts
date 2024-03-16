@@ -13,19 +13,34 @@ export type CategoryProps = {
   id: string;
   attributes: {
     name: string;
-    icon: string;
+    whiteIcon: ImageProps;
+    blackIcon: ImageProps;
     position: number;
     categories: {
       data: {
         id: string;
         attributes: {
           name: string;
-          icon: string;
           position: number;
         };
       }[];
     };
   };
+};
+export type MultiImageProps = {
+  id: string;
+  attributes: {
+    width: number;
+    height: number;
+    name: string;
+    url: string;
+  };
+};
+
+export type ProductDetailsProps = {
+  name: string;
+  value: string;
+  id: string;
 };
 export type ProductProps = {
   id: string;
@@ -33,7 +48,11 @@ export type ProductProps = {
     category: {
       data: CategoryProps;
     };
-    image: ImageProps;
+    details: ProductDetailsProps[];
+    images: {
+      data: MultiImageProps[];
+    };
+    content: string;
     name: string;
     description: string;
     price: number;

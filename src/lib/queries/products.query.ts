@@ -19,7 +19,6 @@ const GET_PRODUCTS = gql`
               attributes {
                 name
                 position
-                icon
               }
             }
           }

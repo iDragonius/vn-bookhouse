@@ -16,7 +16,28 @@ const GET_CATEGORIES = gql`
       data {
         attributes {
           name
-          icon
+          whiteIcon {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+                name
+              }
+            }
+          }
+          blackIcon {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+                name
+              }
+            }
+          }
           position
           categories(sort: "position:asc") {
             data {

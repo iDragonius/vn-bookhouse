@@ -32,7 +32,9 @@ const BasketPage: FC<BasketPageProps> = () => {
                 <div className={" flex gap-5 w-[400px]"}>
                   <Image
                     loader={imageLoader}
-                    src={basketItem.data.attributes.image.data.attributes.url}
+                    src={
+                      basketItem.data.attributes.images?.data[0].attributes.url
+                    }
                     alt={basketItem.data.attributes.name}
                     width={120}
                     height={120}
