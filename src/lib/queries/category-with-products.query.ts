@@ -19,6 +19,7 @@ const GET_CATEGORY_WITH_PRODUCTS = gql`
   query ($locale: I18NLocaleCode!, $id: ID!) {
     category(id: $id, locale: $locale) {
       data {
+        id
         attributes {
           name
 

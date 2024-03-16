@@ -4,6 +4,8 @@ import Image from "next/image";
 import BasketView from "@/components/ui/views/basket-view";
 import { useBasket } from "@/hooks/use-basket";
 import { imageLoader } from "@/lib/utils";
+import Link from "next/link";
+import slugify from "slugify";
 
 export interface BasketPageProps {}
 
@@ -29,7 +31,14 @@ const BasketPage: FC<BasketPageProps> = () => {
                 key={basketItem.data.id}
                 className={"flex justify-between  "}
               >
-                <div className={" flex gap-5 w-[400px]"}>
+                <Link
+                  href={`/product/${
+                    slugify(basketItem.data.attributes.name) +
+                    "-" +
+                    basketItem.data.id
+                  }`}
+                  className={" flex gap-5 w-[400px]"}
+                >
                   <Image
                     loader={imageLoader}
                     src={
@@ -50,7 +59,7 @@ const BasketPage: FC<BasketPageProps> = () => {
                       {basketItem.data.attributes.description}
                     </p>
                   </div>
-                </div>
+                </Link>
                 <div className={"w-[150px] "}>
                   <div className={"flex items-center "}>
                     <button

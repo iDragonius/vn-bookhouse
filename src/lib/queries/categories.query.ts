@@ -14,6 +14,7 @@ const GET_CATEGORIES = gql`
       filters: { isMainCategory: { eq: true } }
     ) {
       data {
+        id
         attributes {
           name
           whiteIcon {
