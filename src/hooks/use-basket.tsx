@@ -36,11 +36,16 @@ export function useBasket() {
     setBasketData(clonedData);
     localStorage.setItem("basket", JSON.stringify(clonedData));
   }
+  function clearBasket() {
+    localStorage.setItem("basket", "");
+    setBasketData([]);
+  }
   return {
     basketData,
     setBasketData,
     addToBasket,
     itemsCount,
     priceInfo,
+    clearBasket,
   };
 }

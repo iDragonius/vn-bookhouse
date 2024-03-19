@@ -16,16 +16,13 @@ export interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({ data }) => {
   const { addToBasket } = useBasket();
   const swiperRef = React.useRef<null | SwiperRef>(null);
-  const nextSlide = () => {
-    swiperRef.current!.swiper.slideNext();
-  };
-  const prevSlide = () => {
-    swiperRef.current!.swiper.slidePrev();
-  };
+
   return (
     <Link
       href={`/product/${slugify(data.attributes.name) + "-" + data.id}`}
-      className={cn(" rounded-[8px] relative h-[430px] group trans ")}
+      className={cn(
+        " rounded-[8px] relative block group trans p-3 bg-white hover:shadow-xl",
+      )}
     >
       <Swiper
         ref={swiperRef}
@@ -75,7 +72,7 @@ const ProductCard: FC<ProductCardProps> = ({ data }) => {
             addToBasket(data, 1);
           }}
           className={
-            "hidden group-hover:block  bg-primaryGold text-white mt-3 px-3 py-2 rounded-[12px]"
+            "w-full group-hover:block  bg-primaryGold text-white mt-3 px-3 py-2 rounded-[12px]"
           }
         >
           Səbətə at

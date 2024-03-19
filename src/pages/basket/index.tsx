@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import BasketView from "@/components/ui/views/basket-view";
@@ -6,11 +6,18 @@ import { useBasket } from "@/hooks/use-basket";
 import { imageLoader } from "@/lib/utils";
 import Link from "next/link";
 import slugify from "slugify";
+import { useRouter } from "next/router";
 
 export interface BasketPageProps {}
 
 const BasketPage: FC<BasketPageProps> = () => {
   const { basketData, setBasketData, addToBasket } = useBasket();
+  const { push } = useRouter();
+  useEffect(() => {
+    if (basketData?.length === 0) {
+      push("/");
+    }
+  }, []);
   return (
     <>
       <Head>
