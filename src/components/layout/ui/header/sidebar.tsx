@@ -57,7 +57,9 @@ const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
         </div>
         {activeMainCategory && (
           <div
-            className={"  w-[240px] h-full bg-white py-5 flex flex-col mr-5"}
+            className={
+              "  w-[240px] h-full bg-white py-5 flex flex-col mr-5 overflow-y-auto"
+            }
           >
             {activeMainCategory.attributes.categories.data.map((category) => (
               <SidebarItem
@@ -91,8 +93,6 @@ const SidebarItem = ({
   onMouseOver?(): void;
   hasLink: boolean;
 }) => {
-  console.log(data.attributes.blackIcon);
-  console.log(data.attributes.whiteIcon);
   const [hovered, setHovered] = useState<boolean>(false);
   return hasLink ? (
     <Link
@@ -139,7 +139,7 @@ const SidebarItem = ({
         setHovered(false);
       }}
       className={
-        "flex items-center gap-2 px-4 py-3 w-full trans hover:bg-primaryGold focus:bg-primaryGold outline-none group"
+        "flex items-center gap-2 px-4 py-3 w-full trans hover:bg-primaryGold focus:bg-primaryGold outline-none group cursor-pointer"
       }
     >
       {data?.attributes?.whiteIcon?.data &&
