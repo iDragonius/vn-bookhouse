@@ -12,6 +12,7 @@ const GET_CATEGORIES = gql`
       locale: $locale
       sort: "position:asc"
       filters: { isMainCategory: { eq: true } }
+      pagination: { page: 1, pageSize: 500 }
     ) {
       data {
         id
@@ -40,7 +41,10 @@ const GET_CATEGORIES = gql`
             }
           }
           position
-          categories(sort: "position:asc") {
+          categories(
+            sort: "position:asc"
+            pagination: { page: 1, pageSize: 500 }
+          ) {
             data {
               id
               attributes {
