@@ -28,26 +28,30 @@ function Home() {
       </Head>
       <main>
         <div className={"box mb-8"}>
-          {data?.collection.data.attributes.specialOffers.data.length > 0 && (
-            <div className={"mt-8"}>
-              <h2 className={"text-32 text-[#2B2B2B] font-semibold mb-5"}>
-                Xüsusi təkliflər
-              </h2>
-              <ProductCarousel
-                data={data?.collection.data.attributes.specialOffers.data || []}
-              />
-            </div>
-          )}
-          {data?.collection.data.attributes.newProducts.data.length > 0 && (
-            <div className={"mt-8"}>
-              <h2 className={"text-32 text-[#2B2B2B] font-semibold mb-5"}>
-                Yeniliklər
-              </h2>
-              <ProductCarousel
-                data={data?.collection.data.attributes.newProducts.data || []}
-              />
-            </div>
-          )}
+          {data?.collection?.data?.attributes.newProducts.data &&
+            data?.collection.data.attributes.specialOffers.data.length > 0 && (
+              <div className={"mt-8"}>
+                <h2 className={"text-32 text-[#2B2B2B] font-semibold mb-5"}>
+                  Xüsusi təkliflər
+                </h2>
+                <ProductCarousel
+                  data={
+                    data?.collection.data.attributes.specialOffers.data || []
+                  }
+                />
+              </div>
+            )}
+          {data?.collection?.data?.attributes.newProducts.data &&
+            data?.collection?.data?.attributes.newProducts.data.length > 0 && (
+              <div className={"mt-8"}>
+                <h2 className={"text-32 text-[#2B2B2B] font-semibold mb-5"}>
+                  Yeniliklər
+                </h2>
+                <ProductCarousel
+                  data={data?.collection.data.attributes.newProducts.data || []}
+                />
+              </div>
+            )}
 
           <div className={"mt-8"}>
             <h2 className={"text-32 text-[#2B2B2B] font-semibold mb-5"}>
