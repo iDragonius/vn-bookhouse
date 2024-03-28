@@ -8,7 +8,7 @@ export interface GetProductsResponse {
 }
 const GET_PRODUCTS = gql`
   query ($locale: I18NLocaleCode!) {
-    products(locale: $locale) {
+    products(locale: $locale, pagination: { page: 1, pageSize: 500 }) {
       data {
         attributes {
           name

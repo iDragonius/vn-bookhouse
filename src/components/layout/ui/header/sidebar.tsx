@@ -44,7 +44,9 @@ const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
     >
       <div ref={sidebarRef} className={"flex  "}>
         <div
-          className={"  w-[280px] h-full bg-white py-5 flex flex-col border-r"}
+          className={
+            "  w-[280px] h-full bg-white py-5 flex flex-col border-r overflow-y-auto"
+          }
         >
           {data?.map((category) => (
             <SidebarItem

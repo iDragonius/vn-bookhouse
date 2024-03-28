@@ -23,7 +23,7 @@ const GET_HOME = gql`
       data {
         id
         attributes {
-          newProducts {
+          newProducts(pagination: { page: 1, pageSize: 500 }) {
             data {
               id
               attributes {
@@ -53,7 +53,7 @@ const GET_HOME = gql`
               }
             }
           }
-          specialOffers {
+          specialOffers(pagination: { page: 1, pageSize: 500 }) {
             data {
               id
               attributes {
@@ -86,7 +86,7 @@ const GET_HOME = gql`
         }
       }
     }
-    products(locale: $locale) {
+    products(locale: $locale, pagination: { page: 1, pageSize: 500 }) {
       data {
         attributes {
           name

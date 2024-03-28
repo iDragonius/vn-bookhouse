@@ -34,7 +34,7 @@ const GET_CATEGORY_WITH_PRODUCTS = gql`
               }
             }
           }
-          products {
+          products(pagination: { page: 1, pageSize: 500 }) {
             data {
               id
               attributes {
