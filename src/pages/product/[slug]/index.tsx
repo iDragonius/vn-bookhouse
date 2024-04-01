@@ -64,7 +64,7 @@ const ProductPage: FC<ProductPageProps> = () => {
       </Head>
       <main className={"box "}>
         <div className={"w-full flex gap-8 mt-10"}>
-          <div className={"w-[500px]"}>
+          <div className={"w-[500px] h-[420px] bg-white border"}>
             <Swiper
               ref={swiperRef}
               modules={[Navigation, Pagination, Autoplay]}
@@ -82,7 +82,7 @@ const ProductPage: FC<ProductPageProps> = () => {
                     width={300}
                     height={295}
                     className={
-                      "w-full h-[400px] object-cover rounded-[8px] z-[50] relative before:absolute before:w-full before:top-0 before:left-0 before:block  before:h-full before:bg-black before:bg-opacity-40 before:z-[100]"
+                      "w-full h-[400px] p-3 object-contain rounded-[8px] z-[50] relative before:absolute before:w-full before:top-0 before:left-0 before:block  before:h-full before:bg-black before:bg-opacity-40 before:z-[100]"
                     }
                   />
                 </SwiperSlide>
