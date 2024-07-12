@@ -54,6 +54,7 @@ const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
               key={category.id}
               onMouseOver={() => onHoverMainCategory(category)}
               hasLink={false}
+              close={close}
             />
           ))}
         </div>
@@ -65,6 +66,7 @@ const Sidebar = ({ close, data }: { close(): void; data: CategoryProps[] }) => {
           >
             {activeMainCategory.attributes.categories.data.map((category) => (
               <SidebarItem
+                close={close}
                 data={category as CategoryProps}
                 key={category.id}
                 hasLink={true}
@@ -90,10 +92,12 @@ const SidebarItem = ({
   data,
   onMouseOver,
   hasLink,
+  close,
 }: {
   data: CategoryProps;
   onMouseOver?(): void;
   hasLink: boolean;
+  close(): void;
 }) => {
   const [hovered, setHovered] = useState<boolean>(false);
   return hasLink ? (
@@ -104,6 +108,7 @@ const SidebarItem = ({
       onMouseLeave={() => {
         setHovered(false);
       }}
+      onClick={close}
       href={`/category/${data.id}`}
       className={
         "flex items-center gap-2 px-4 py-3 w-full trans hover:bg-primaryGold focus:bg-primaryGold outline-none group"
