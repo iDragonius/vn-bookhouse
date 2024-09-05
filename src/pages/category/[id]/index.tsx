@@ -65,7 +65,11 @@ const CategoryItemPage: FC<CategoryItemPageProps> = () => {
           </div>
         </div>
         <div className={"box my-8"}>
-          <div className={"grid grid-cols-4 gap-5"}>
+          <div
+            className={
+              "grid  max-sm:grid-cols-1  max-[900px]:grid-cols-2  max-[1300px]:grid-cols-3 grid-cols-4 gap-5"
+            }
+          >
             {data?.category.data.attributes.products.data.map((product) => (
               <ProductCard data={product} key={product.id} />
             ))}
